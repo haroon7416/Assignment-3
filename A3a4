@@ -1,0 +1,17 @@
+from sklearn.model_selection import cross_val_score, KFold
+import numpy as np
+
+# 1. Set up k-fold cross-validation
+k = 5
+kf = KFold(n_splits=k, shuffle=True, random_state=42)
+
+# 2. Evaluate the model
+model = DecisionTreeClassifier(random_state=42)
+cv_scores = cross_val_score(model, X, y, cv=kf, scoring='accuracy')
+
+# 3. Calculate mean and standard deviation of accuracy
+mean_accuracy = np.mean(cv_scores)
+std_accuracy = np.std(cv_scores)
+
+mean_accuracy, std_accuracy
+
